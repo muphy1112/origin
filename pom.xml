@@ -11,6 +11,7 @@
     <modules>
         <module>helloword</module>
         <module>muphyspring</module>
+      <module>muphyspring-2.0</module>
     </modules>
 
     <name>workspace</name>
