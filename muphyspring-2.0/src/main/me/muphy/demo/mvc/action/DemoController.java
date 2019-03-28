@@ -1,13 +1,14 @@
 package me.muphy.demo.mvc.action;
 
 import me.muphy.demo.service.IDemoService;
-import me.muphy.mvcframework.anotation.MuphyAutoWired;
+import me.muphy.mvcframework.anotation.MuphyAutowired;
 import me.muphy.mvcframework.anotation.MuphyController;
 import me.muphy.mvcframework.anotation.MuphyRequestMapping;
 import me.muphy.mvcframework.anotation.MuphyRequestParam;
 
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 2019/3/29
@@ -16,11 +17,24 @@ import java.net.http.HttpResponse;
 @MuphyController
 @MuphyRequestMapping("/demo")
 public class DemoController {
-    @MuphyAutoWired
+    @MuphyAutowired
     private IDemoService service;
+
     @MuphyRequestMapping("/query")
     //为什么要MuphyRequestParam
-    public String query(HttpRequest request, HttpResponse response, @MuphyRequestParam("name") String name){
-        return service.getMessage(name);
+    public void query(HttpServletRequest request, HttpServletResponse response, @MuphyRequestParam("name") String name, @MuphyRequestParam("num") String num) throws IOException {
+        response.getWriter().write(service.getMessage(name) + ", num=" + num);
+    }
+
+    @MuphyRequestMapping("/add")
+    //为什么要MuphyRequestParam
+    public void add(HttpServletResponse response, @MuphyRequestParam("a") int a, @MuphyRequestParam("b") int b) throws IOException {
+        response.getWriter().write(a + " + " + b + " = " + (a + b));
+    }
+
+    @MuphyRequestMapping("/sub")
+    //为什么要MuphyRequestParam
+    public void sub(HttpServletResponse response, @MuphyRequestParam("a") int a, @MuphyRequestParam("b") int b) throws IOException {
+        response.getWriter().write(a + " - " + b + " = " + (a - b));
     }
 }

@@ -96,9 +96,13 @@
     -->
   <servlet>
     <description>Cocoon blocks dispatcher</description>
-    <display-name>muphy spring mvc version 2.0</display-name>
+    <display-name>muphy spring mvc 2.0</display-name>
     <servlet-name>muphyspringmvc</servlet-name>
-    <servlet-class>org.apache.cocoon.servletservice.DispatcherServlet</servlet-class>
+    <servlet-class>me.muphy.mvcframework.v2.servlet.MuphyDispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>application.properties</param-value>
+    </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
 
