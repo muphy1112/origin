@@ -106,7 +106,7 @@ public class MuphyDispatcherServlet extends HttpServlet {
             }
 
             for (Method method : clazz.getMethods()) {
-                if(!method.isAnnotationPresent(MuphyRequestMapping.class)) return;
+                if(!method.isAnnotationPresent(MuphyRequestMapping.class)) continue;
                 MuphyRequestMapping requestMapping = method.getAnnotation(MuphyRequestMapping.class);
                 String url = ("/" + baseUrl + "/" + requestMapping.value()).replaceAll("/+", "/");
                 handlerMapping.put(url, method);
