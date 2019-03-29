@@ -15,6 +15,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 2019/3/27
@@ -47,7 +49,8 @@ public class MuphyDispatcherServlet extends HttpServlet {
         String url = req.getRequestURI().replace(contextPath, "").replaceAll("/+", "/");
         HandlerMapping handlerMapping = null;
         for (HandlerMapping mapping : handlerMappings) {
-            if (mapping.getUrl().equals(url)) {
+            Matcher matcher = mapping.getUrl().matcher(url);
+            if (matcher.matches()) {
                 handlerMapping = mapping;
                 break;
             }
@@ -67,7 +70,6 @@ public class MuphyDispatcherServlet extends HttpServlet {
             String value = Arrays.toString(param.getValue())
                     .replaceAll("\\[|\\]", "")
                     .replaceAll("\\s", ",");
-            System.out.println(Arrays.toString(param.getValue()));
             int index = handlerMapping.getParamIndexMapping().get(param.getKey());
             paramValues[index] = convert(paramTypes[index], value);
         }
@@ -122,8 +124,9 @@ public class MuphyDispatcherServlet extends HttpServlet {
                     MuphyRequestMapping requestMapping = method.getAnnotation(MuphyRequestMapping.class);
                     String url = ("/" + baseUrl + "/" + requestMapping.value()).replaceAll("\\/+", "/");
                     //handlerMappings.put(url.replaceAll("\\/+", "/"), method);
-                    handlerMappings.add(new HandlerMapping(url, entry.getValue(), method));
-                    System.out.println("Mapred url:" + url.replaceAll("/+", "/"));
+                    Pattern pattern = Pattern.compile(url);
+                    handlerMappings.add(new HandlerMapping(pattern, entry.getValue(), method));
+                    System.out.println("Mapred url:" + pattern);
                 }
             }
         }
@@ -239,7 +242,7 @@ public class MuphyDispatcherServlet extends HttpServlet {
     }
 
     public class HandlerMapping {
-        private String url;
+        private Pattern url;
         private Method method;
         private Object controller;
         private Map<String, Integer> paramIndexMapping;
@@ -254,7 +257,7 @@ public class MuphyDispatcherServlet extends HttpServlet {
 
         private Class<?>[] paramTypes;
 
-        public HandlerMapping(String url, Object controller, Method method) {
+        public HandlerMapping(Pattern url, Object controller, Method method) {
             this.url = url;
             this.method = method;
             this.controller = controller;
@@ -283,11 +286,11 @@ public class MuphyDispatcherServlet extends HttpServlet {
             }
         }
 
-        public String getUrl() {
+        public Pattern getUrl() {
             return url;
         }
 
-        public void setUrl(String url) {
+        public void setUrl(Pattern url) {
             this.url = url;
         }
 

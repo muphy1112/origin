@@ -20,13 +20,13 @@ public class DemoController {
     @MuphyAutowired
     private IDemoService service;
 
-    @MuphyRequestMapping("/query")
+    @MuphyRequestMapping("/.*query.*")
     //为什么要MuphyRequestParam
     public void query(HttpServletRequest request, HttpServletResponse response, @MuphyRequestParam("name") String name, @MuphyRequestParam("num") String num) throws IOException {
         response.getWriter().write(service.getMessage(name) + ", num=" + num);
     }
 
-    @MuphyRequestMapping("/add")
+    @MuphyRequestMapping("/add.*")
     //为什么要MuphyRequestParam
     public void add(HttpServletResponse response, @MuphyRequestParam("a") int a, @MuphyRequestParam("b") int b) throws IOException {
         response.getWriter().write(a + " + " + b + " = " + (a + b));
