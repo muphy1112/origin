@@ -12,6 +12,7 @@
         <module>helloword</module>
         <module>muphyspring</module>
       <module>muphyspring-2.0</module>
+        <module>pattern</module>
     </modules>
 
     <name>workspace</name>
