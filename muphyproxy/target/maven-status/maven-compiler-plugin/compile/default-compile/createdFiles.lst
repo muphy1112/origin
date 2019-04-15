@@ -1,0 +1,7 @@
+me\muphy\App.class
+me\muphy\proxy\Programmer.class
+me\muphy\reflect\MuphyInvocationHandler.class
+me\muphy\reflect\MuphyClassLoader.class
+me\muphy\proxy\JavaTextProgrammer.class
+me\muphy\reflect\MuphyProxy.class
+me\muphy\proxy\MuphyHeadhunting.class

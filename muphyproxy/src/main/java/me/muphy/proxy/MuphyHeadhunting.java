@@ -1,23 +1,24 @@
-package me.muphy.proxy.dynamicproxy.jdkproxy;
+package me.muphy.proxy;
 
-import me.muphy.proxy.dynamicproxy.Programmer;
 
-import java.lang.reflect.InvocationHandler;
+import me.muphy.reflect.MuphyClassLoader;
+import me.muphy.reflect.MuphyInvocationHandler;
+import me.muphy.reflect.MuphyProxy;
+
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 /**
  * 2019/4/12
  * 莫非
  */
-public class JDKHeadhunting implements InvocationHandler {
+public class MuphyHeadhunting implements MuphyInvocationHandler {
 
-    private Programmer programmer;
+    private Object programmer;
 
-    public Object getInstance(Programmer programmer) throws  Exception{
+    public Object getInstance(Object programmer) throws Exception{
         this.programmer = programmer;
         Class<?> clazz = programmer.getClass();
-        return Proxy.newProxyInstance(clazz.getClassLoader(),clazz.getInterfaces(), this);
+        return MuphyProxy.newProxyInstance(new MuphyClassLoader(), clazz.getInterfaces(), this);
     }
 
     @Override

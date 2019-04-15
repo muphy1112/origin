@@ -1,4 +1,4 @@
-package me.muphy.proxy.dynamicproxy;
+package me.muphy.proxy;
 
 /**
  * 2019/4/12
@@ -6,5 +6,4 @@ package me.muphy.proxy.dynamicproxy;
  */
 public interface Programmer {
     void findJob();
-    void eat();
 }

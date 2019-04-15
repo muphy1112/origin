@@ -13,6 +13,7 @@
         <module>muphyspring</module>
         <module>muphyspring-2.0</module>
         <module>pattern</module>
+        <module>muphyproxy</module>
     </modules>
 
     <name>workspace</name>
