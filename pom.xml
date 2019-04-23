@@ -14,6 +14,7 @@
         <module>muphyspring-2.0</module>
         <module>pattern</module>
         <module>muphyproxy</module>
+        <module>muphyObsever</module>
     </modules>
 
     <name>workspace</name>

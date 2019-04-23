@@ -1,8 +1,7 @@
 package me.muphy.util;
 
-import me.muphy.singleton.ContainerSingleton;
-import me.muphy.singleton.HungrySingleton;
-import me.muphy.singleton.SingletonBean;
+import me.muphy.singleton.impl.ContainerSingleton;
+import me.muphy.singleton.impl.SingletonBean;
 
 /**
  * 2019/4/1
@@ -15,7 +14,7 @@ public class ExectorThread implements Runnable {
 //
 //        System.out.println(hungrySingleton.getClass().getSimpleName() + ":" + hungrySingleton);
 
-        SingletonBean singleton = (SingletonBean) ContainerSingleton.getBean("me.muphy.singleton.SingletonBean");
+        SingletonBean singleton = (SingletonBean) ContainerSingleton.getBean("me.muphy.singleton.impl.SingletonBean");
         System.out.println(singleton);
     }
 }
