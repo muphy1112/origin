@@ -1,2 +1,5 @@
 # origin
-The ideal of the rookie 
+1.熟悉JDK代理和cglib代理的使用，以及手写JDK代理
+2.熟悉几种简单的观察者模式框架
+3.熟悉并手写一个spring框架
+4.熟悉各种设计模式的写法
